@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.railroad.service"/>
+    <context:component-scan base-package="com.railroad.model.dao"/>
+    <context:component-scan base-package="com.railroad.model.repository"/>
+
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:dataSource.properties"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <bean class="oracle.jdbc.pool.OracleDataSource">
+                <property name="URL" value="${jdbc.url}"/>
+                <property name="user" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+                <property name="connectionProperties">
+                    <props merge="default">
+                        <prop key="MinLimit">3</prop>
+                        <prop key="MaxLimit">20</prop>
+                    </props>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="PackagesToScan">
+            <list>
+                <value>com.railroad.model.entity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory
+                </prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2dll.auto}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.default_schema">ELENA</prop>
+                <prop key="current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

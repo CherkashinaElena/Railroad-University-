@@ -1,0 +1,49 @@
+.main{
+    margin: 100px;
+}
+.main h1{
+    color: #000000 !important;
+    padding: 5px;
+}
+
+.content{
+    border: thin solid #B5B5B5;
+    border-radius: 5px;
+    padding: 50px;
+}
+
+.content_table{
+    padding-top: 10px;
+}
+
+.form_content{
+    margin-top: 20px;
+}
+
+.tip{
+    width: 350px;
+    float: right;
+}
+
+.tip_header{
+    padding-left: 25px;
+    background-color: #353636;
+    border: thin solid #B5B5B5;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #F5F5F5
+}
+
+.tip_content{
+    border-right: thin solid #B5B5B5;
+    border-left: thin solid #B5B5B5;
+    border-bottom: thin solid #B5B5B5;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+p{
+    text-indent: 30px;
+    padding: 15 20 10 20;
+    text-align: justify;
+}

@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: snow !important;
+}
+
+.content-wrapper{
+    width: 1000px;
+    margin: 100px;
+    padding: 50px;
+}
+
+.widget_body {
+    width: auto;
+    border:none;
+    margin:15px;
+    padding:15px;
+}
+
+.modal_body{
+    margin: 5px;
+    padding-left: 50px;
+}
+
+.header{
+    background: #353636;
+    height: 100px;
+}
+
+.logo{
+    padding-top: 15px;
+    margin-left: 70px;
+}
+
+h1{
+    color: #F5F5F5 !important;
+    font-family: sans-serif;
+}
