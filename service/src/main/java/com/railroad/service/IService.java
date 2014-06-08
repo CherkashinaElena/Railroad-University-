@@ -2,6 +2,7 @@ package com.railroad.service;
 
 import com.railroad.model.dao.abstractDao.Dao;
 import com.railroad.model.entity.Station;
+import com.railroad.model.entity.Train;
 import com.railroad.model.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,10 +16,16 @@ import java.util.List;
 @Service
 public abstract class IService<T> {
 
+    //dao
     @Autowired
     @Qualifier("stationDao")
     Dao<Station> stationDao;
 
+    @Autowired
+    @Qualifier("trainDao")
+    Dao<Train> trainDao;
+
+    //repository
     @Autowired
     @Qualifier("stationRepository")
     StationRepository stationRepository;

@@ -1,6 +1,7 @@
 package com.railroad.controller;
 
 import com.railroad.model.entity.Station;
+import com.railroad.model.entity.Train;
 import com.railroad.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,4 +14,8 @@ public abstract class AbstractController {
     @Autowired
     @Qualifier("stationService")
     IService<Station> stationService;
+
+    @Autowired
+    @Qualifier("trainService")
+    IService<Train> trainService;
 }

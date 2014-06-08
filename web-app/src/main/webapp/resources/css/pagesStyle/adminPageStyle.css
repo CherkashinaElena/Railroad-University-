@@ -36,3 +36,10 @@ h1{
     color: #F5F5F5 !important;
     font-family: sans-serif;
 }
+
+.footer{
+    height: 50px;
+    margin: 10px 80px 30px;
+    border: thin solid #B5B5B5;
+    border-radius: 5px;
+}

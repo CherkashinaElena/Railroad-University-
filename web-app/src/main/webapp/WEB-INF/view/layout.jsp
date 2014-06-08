@@ -12,8 +12,10 @@
 <head>
     <link href="<c:url value="../../resources/css/pagesStyle/adminPageStyle.css"/>" rel="stylesheet"/>
     <link href="<c:url value="../../resources/css/bootstrap.min.css"/>" rel="stylesheet"/>
-    <script src="<c:url value="../../resources/js/jquery.js"/>"></script>
+    <link href="<c:url value="../../resources/css/bootstrapValidator.min.css"/>" rel="stylesheet"/>
     <script src="<c:url value="../../resources/js/bootstrap.min.js"/>"></script>
+    <script src="<c:url value="../../resources/js/jquery-2.1.1.js"/>"></script>
+    <script src="<c:url value="../../resources/js/bootstrapValidator.min.js"/>"></script>
     <link href="<c:url value="../../resources/css/DateTimePicker.css"/>" rel="stylesheet"/>
     <script src="<c:url value="../../resources/js/DateTimePicker.js"/>"></script>
     <title>Header</title>
