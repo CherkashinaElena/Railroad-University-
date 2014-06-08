@@ -21,6 +21,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/admin/stations">Stations</a></li>
                 <li class="active"><a href="/admin/trains">Trains</a></li>
+                <li class="active"><a href="/admin/routes">Routes</a></li>
             </ul>
         </div>
     </div>

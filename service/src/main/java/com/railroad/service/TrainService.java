@@ -1,5 +1,6 @@
 package com.railroad.service;
 
+import com.railroad.model.entity.Station;
 import com.railroad.model.entity.Train;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +37,17 @@ public class TrainService extends IService<Train>{
     @Override
     public List<Train> getAll() {
         return trainDao.getAll();
+    }
+
+    @Transactional
+    public Train getTrainByNumberTrain(String numberTrain) {
+        List<Train> trains = trainRepository.getTrainByNumberTrain(numberTrain);
+
+        Train train = new Train();
+
+        for (Train t : trains) {
+            train = t;
+        }
+        return train;
     }
 }

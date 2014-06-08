@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by Elena on 6/7/2014.
@@ -13,8 +14,8 @@ public class Route {
     private int idroute;
     private int idstation;
     private int idtrain;
-    private Timestamp timein;
-    private Timestamp timeout;
+    private Date timein;
+    private Date timeout;
     private String minutes;
     private Double kilometers;
     private BigDecimal priority;
@@ -55,21 +56,21 @@ public class Route {
 
     @Basic
     @Column(name = "TIMEIN")
-    public Timestamp getTimein() {
+    public Date getTimein() {
         return timein;
     }
 
-    public void setTimein(Timestamp timein) {
+    public void setTimein(Date timein) {
         this.timein = timein;
     }
 
     @Basic
     @Column(name = "TIMEOUT")
-    public Timestamp getTimeout() {
+    public Date getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(Timestamp timeout) {
+    public void setTimeout(Date timeout) {
         this.timeout = timeout;
     }
 

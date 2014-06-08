@@ -1,5 +1,6 @@
 package com.railroad.controller;
 
+import com.railroad.model.entity.Route;
 import com.railroad.model.entity.Station;
 import com.railroad.model.entity.Train;
 import com.railroad.service.IService;
@@ -18,4 +19,8 @@ public abstract class AbstractController {
     @Autowired
     @Qualifier("trainService")
     IService<Train> trainService;
+
+    @Autowired
+    @Qualifier("routeService")
+    IService<Route> routeService;
 }

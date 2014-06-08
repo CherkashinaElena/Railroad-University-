@@ -32,6 +32,7 @@
                         <div class="col-md-7">
                             <form:input path="numbertrain" name="numbertrain" id="numbertrain" cssClass="form-control"/>
                         </div>
+                        <div id="trainAviabilityResult"></div>
                     </div>
 
                     <div class="form-group">
@@ -53,7 +54,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                             <button class="btn btn-danger" type="reset">Clear</button>
-                            <button class="btn btn-success" type="submit">Save changes</button>
+                            <button id="submitButton" class="btn btn-success" type="submit">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -127,6 +128,39 @@
                 }
             }
         });
+    });
+</script>
+
+<script>
+    function check_availability(){
+        $.ajax({
+            type: "POST",
+            url: "/admin/trains/addTrain/checkTrain",
+            cache: false,
+            beforeSend: function () {
+                $('#trainAviabilityResult').html('Checking...');
+            },
+            data: 'numbertrain=' + $('#numbertrain').val(),
+            success: function (response) {
+                $('#trainAviabilityResult').html("");
+                var obj = JSON.parse(response);
+                console.log(obj);
+                if (obj == 'false') {
+                    $("#trainAviabilityResult").html("Train already exist").css('color', 'red');
+                    $("#submitButton").attr('disabled', true);
+                } else {
+                    $("#trainAviabilityResult").html("").css('color', 'green');
+                    $("#submitButton").attr('disabled', false);
+                }
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        })
+    }
+
+    $('#numbertrain').blur(function(){
+        check_availability();
     });
 </script>
 <%@include file="layout_footer.jsp"%>

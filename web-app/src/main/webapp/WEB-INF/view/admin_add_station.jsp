@@ -14,6 +14,7 @@
     <title>Stations</title>
     <link href="<c:url value="../../resources/css/pagesStyle/station_style.css"/>" rel="stylesheet"/>
     <link href="<c:url value="../../resources/css/bootstrapValidator.min.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="../../resources/css/bootstrap.min.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <%@include file="admin_main_page.jsp" %>
@@ -28,15 +29,16 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="namestation">Station</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-5">
                             <form:input path="namestation" id="namestation" name="namestation" cssClass="form-control"/>
                         </div>
+                        <div id="stationAviabilityResult"></div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                             <button class="btn btn-danger" type="reset">Clear</button>
-                            <button class="btn btn-success" type="submit">Save changes</button>
+                            <button id="submitButton" class="btn btn-success" type="submit">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -60,6 +62,11 @@
 <script>
     $(document).ready(function () {
         $('#stationForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
             fields: {
                 namestation: {
                     message: 'The station is not valid',
@@ -82,6 +89,38 @@
         });
     });
 </script>
-<%@include file="layout_footer.jsp"%>
+
+<script>
+    function check_availability(){
+        $.ajax({
+            type: "POST",
+            url: "/admin/stations/addStation/checkStation",
+            cache: false,
+            beforeSend: function () {
+                $('#stationAviabilityResult').html('Checking...');
+            },
+            data: 'namestation=' + $('#namestation').val(),
+            success: function (response) {
+                $('#stationAviabilityResult').html("");
+                var obj = JSON.parse(response);
+                console.log(obj);
+                if (obj == 'false') {
+                    $("#stationAviabilityResult").html("Station already exist").css('color', 'red');
+                    $("#submitButton").attr('disabled', true);
+                } else {
+                    $("#stationAviabilityResult").html("").css('color', 'green');
+                    $("#submitButton").attr('disabled', false);
+                }
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        })
+    }
+
+    $('#namestation').blur(function(){
+            check_availability();
+    });
+</script>
 </body>
 </html>
