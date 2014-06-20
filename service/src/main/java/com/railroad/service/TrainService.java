@@ -1,10 +1,13 @@
 package com.railroad.service;
 
+import com.railroad.model.entity.Route;
 import com.railroad.model.entity.Station;
 import com.railroad.model.entity.Train;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,5 +52,10 @@ public class TrainService extends IService<Train>{
             train = t;
         }
         return train;
+    }
+
+    @Transactional
+    public List searchTrains(String stationFrom, String stationTo){
+        return trainRepository.searchTrains(stationFrom, stationTo);
     }
 }

@@ -40,13 +40,6 @@ public class StationService extends IService<Station> {
 
     @Transactional
     public Station getStationByNameStation(String nameStation) {
-        List<Station> stations = stationRepository.getStationByName(nameStation);
-
-        Station station = new Station();
-
-        for (Station s : stations) {
-            station = s;
-        }
-        return station;
+        return stationRepository.getStationByName(nameStation);
     }
 }

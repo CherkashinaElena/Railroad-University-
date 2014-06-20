@@ -1,5 +1,6 @@
 package com.railroad.service;
 
+import com.railroad.model.entity.Route;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,5 +35,15 @@ public class RouteService extends IService {
     @Override
     public List getAll() {
         return routeDao.getAll();
+    }
+
+    @Transactional
+    public Route getRoutebyTrainandStation(int idTrain, String nameStation){
+        return routeRepository.getRouteByTrainandStation(idTrain, nameStation);
+    }
+
+    @Transactional
+    public Double getKilometers(Route routeOut, Route routeIn){
+        return routeRepository.getKilometers(routeOut, routeIn);
     }
 }

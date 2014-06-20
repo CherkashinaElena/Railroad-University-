@@ -1,0 +1,18 @@
+.ticket{
+    margin: 200px;
+    padding: 50px;
+    background: url("../../img/train_ticket.png") no-repeat;
+    background-size: 100%;
+}
+
+.table_content{
+    margin-left: 320px;
+}
+
+th{
+    text-align: center !important;
+}
+
+td{
+    color: #000000 !important;
+}

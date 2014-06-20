@@ -22,6 +22,10 @@
                 <li class="active"><a href="/admin/stations">Stations</a></li>
                 <li class="active"><a href="/admin/trains">Trains</a></li>
                 <li class="active"><a href="/admin/routes">Routes</a></li>
+                <li class="active"><a href="/admin/typeofwagons">Type of wagons</a></li>
+                <li class="active"><a href="/admin/wagons">Wagons</a></li>
+                <li class="active"><a href="/admin/places">Places</a></li>
+                <li class="active"><a href="/admin/tickets">Tickets</a></li>
             </ul>
         </div>
     </div>

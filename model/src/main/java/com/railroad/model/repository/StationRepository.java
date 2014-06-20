@@ -1,5 +1,6 @@
 package com.railroad.model.repository;
 
+import com.railroad.model.entity.Station;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +11,15 @@ import java.util.List;
 @Repository("stationRepository")
 public class StationRepository extends IRepository{
 
-    public List getStationByName(String nameStation){
-        return sessionFactory.getCurrentSession().createQuery("from Station  where namestation = '" + nameStation + "'").list();
+    public Station getStationByName(String nameStation){
+
+        List<Station> stations = sessionFactory.getCurrentSession().createQuery("from Station  where namestation = '" + nameStation + "'").list();
+
+        Station station = new Station();
+
+        for (Station s : stations) {
+            station = s;
+        }
+        return station;
     }
 }

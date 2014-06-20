@@ -1,11 +1,8 @@
 package com.railroad.service;
 
 import com.railroad.model.dao.abstractDao.Dao;
-import com.railroad.model.entity.Route;
-import com.railroad.model.entity.Station;
-import com.railroad.model.entity.Train;
-import com.railroad.model.repository.StationRepository;
-import com.railroad.model.repository.TrainRepository;
+import com.railroad.model.entity.*;
+import com.railroad.model.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -31,6 +28,22 @@ public abstract class IService<T> {
     @Qualifier("routeDao")
     Dao<Route> routeDao;
 
+    @Autowired
+    @Qualifier("typeofwagonDao")
+    Dao<Typeofwagon> typeofwagonDao;
+
+    @Autowired
+    @Qualifier("wagonDao")
+    Dao<Wagon> wagonDao;
+
+    @Autowired
+    @Qualifier("placeDao")
+    Dao<Place> placeDao;
+
+    @Autowired
+    @Qualifier("ticketDao")
+    Dao<Ticket> ticketDao;
+
     //repository
     @Autowired
     @Qualifier("stationRepository")
@@ -39,6 +52,26 @@ public abstract class IService<T> {
     @Autowired
     @Qualifier("trainRepository")
     TrainRepository trainRepository;
+
+    @Autowired
+    @Qualifier("typeofwagonRepository")
+    TypeofWagonRepository typeofWagonRepository;
+
+    @Autowired
+    @Qualifier("wagonRepository")
+    WagonRepository wagonRepository;
+
+    @Autowired
+    @Qualifier("placeRepository")
+    PlaceRepository placeRepository;
+
+    @Autowired
+    @Qualifier("routeRepository")
+    RouteRepository routeRepository;
+
+    @Autowired
+    @Qualifier("ticketRepository")
+    TicketRepository ticketRepository;
 
     public abstract void save(T object);
 

@@ -1,8 +1,8 @@
 package com.railroad.model.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by Elena on 6/7/2014.
@@ -13,8 +13,8 @@ public class Ticket {
     private int idrouteout;
     private int idroutein;
     private int idtrain;
-    private Timestamp datein;
-    private Timestamp dateout;
+    private Date datein;
+    private Date dateout;
     private int idplace;
     private String nameclient;
     private String surnameclient;
@@ -68,21 +68,21 @@ public class Ticket {
 
     @Basic
     @Column(name = "DATEIN")
-    public Timestamp getDatein() {
+    public Date getDatein() {
         return datein;
     }
 
-    public void setDatein(Timestamp datein) {
+    public void setDatein(Date datein) {
         this.datein = datein;
     }
 
     @Basic
     @Column(name = "DATEOUT")
-    public Timestamp getDateout() {
+    public Date getDateout() {
         return dateout;
     }
 
-    public void setDateout(Timestamp dateout) {
+    public void setDateout(Date dateout) {
         this.dateout = dateout;
     }
 

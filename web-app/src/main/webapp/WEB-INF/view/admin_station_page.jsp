@@ -12,7 +12,6 @@
 <html>
 <head>
     <title>Stations</title>
-    <link href="<c:url value="../../resources/css/pagesStyle/station_style.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <%@include file="admin_main_page.jsp" %>

@@ -105,6 +105,11 @@
 <script>
     $(document).ready(function () {
         $('#routeForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
             fields: {
                 timein: {
                     message: 'The time is not valid',

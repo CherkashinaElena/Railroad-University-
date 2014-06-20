@@ -14,7 +14,7 @@ public class TrainDao extends SessionDao<Train> {
 
     @Override
     public void save(Train object) {
-        sessionFactory.getCurrentSession().save(object);
+        sessionFactory.getCurrentSession().saveOrUpdate(object);
     }
 
     @Override

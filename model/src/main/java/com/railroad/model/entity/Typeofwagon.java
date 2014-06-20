@@ -10,7 +10,7 @@ import java.util.Collection;
 public class Typeofwagon {
     private int idtypeofwagon;
     private String type;
-    private String clazz;
+    private String myclass;
     private double price;
     private String note;
     private Collection<Wagon> wagonsByIdtypeofwagon;
@@ -36,13 +36,13 @@ public class Typeofwagon {
     }
 
     @Basic
-    @Column(name = "CLASS")
-    public String getClazz() {
-        return clazz;
+    @Column(name = "MYCLASS")
+    public String getMyclass() {
+        return myclass;
     }
 
-    public void setClazz(String clazz) {
-        this.clazz = clazz;
+    public void setMyclass(String myclass) {
+        this.myclass = myclass;
     }
 
     @Basic
@@ -74,7 +74,7 @@ public class Typeofwagon {
 
         if (idtypeofwagon != that.idtypeofwagon) return false;
         if (Double.compare(that.price, price) != 0) return false;
-        if (clazz != null ? !clazz.equals(that.clazz) : that.clazz != null) return false;
+        if (myclass != null ? !myclass.equals(that.myclass) : that.myclass != null) return false;
         if (note != null ? !note.equals(that.note) : that.note != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
 
@@ -87,7 +87,7 @@ public class Typeofwagon {
         long temp;
         result = idtypeofwagon;
         result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (clazz != null ? clazz.hashCode() : 0);
+        result = 31 * result + (myclass != null ? myclass.hashCode() : 0);
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (note != null ? note.hashCode() : 0);

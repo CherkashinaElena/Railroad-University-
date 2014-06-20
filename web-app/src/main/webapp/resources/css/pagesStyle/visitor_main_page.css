@@ -1,0 +1,120 @@
+body{
+    background-color: #343434 !important;
+}
+
+.main{
+    margin: 50px 200px;
+    border: thin solid #B5B5B5;
+}
+
+.logo{
+    padding-top: 35px;
+    margin-left: 45px;
+}
+
+h1{
+    color: #F5F5F5 !important;
+    font-family: sans-serif;
+}
+
+.main_header{
+    height: 120px;
+    background-image: url("../../img/header_background.png");
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus{
+    background-color: #222 !important;
+}
+
+.row{
+    margin: 0px !important;
+}
+
+.all_content{
+    background-color: #eaeaea !important;
+    padding-bottom: 50px;
+}
+
+.content_header{
+    margin-top: 30px !important;
+    margin-left: 30px !important;
+    margin-bottom: 40px !important;
+    background-image: url("../../img/cross-pattern.png");
+    background-repeat-x: repeat;
+    background-repeat-y: repeat;
+}
+
+.content_body{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+h3{
+    color: #7BA03E !important;
+    padding: 10px;
+}
+
+p{
+    text-indent: 30px;
+    text-align: justify;
+}
+
+.content_body > img{
+    padding-bottom: 30px;
+}
+
+.content_body > p{
+    padding-right: 20px;
+}
+
+.footer{
+    height: 50px;
+    background-color: #161616;
+}
+
+h6{
+    margin-left: 500px;
+    padding-top: 20px;
+    color: #68826B !important;
+}
+
+.content_search_trains{
+    background-color: #eaeaea !important;
+    padding: 100px 50px 50px !important;
+}
+
+.content_search_trains > h1{
+    color: #7BA03E !important;
+}
+
+.all_content_search_trains{
+    border: thin solid #B5B5B5;
+    border-radius: 5px;
+}
+
+.search_form{
+    padding: 50px 10px 10px;
+}
+
+.search_result{
+    padding: 50px;
+}
+
+.trains_view{
+    border: thin solid #B5B5B5;
+    padding: 10px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.trains_content_view{
+    border-right: thin solid #B5B5B5;
+    border-left: thin solid #B5B5B5;
+    border-bottom: thin solid #B5B5B5;
+    padding: 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.search_result > table > td{
+    text-align: center;
+}

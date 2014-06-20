@@ -29,6 +29,7 @@
                     <th>Number</th>
                     <th>Name</th>
                     <th>Count of wagons</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,7 @@
                         <td>${train.numbertrain}</td>
                         <td>${train.nametrain}</td>
                         <td>${train.maxcountwagons}</td>
+                        <td><a href="/admin/editTrain/${train.idtrain}"><button type="button" class="btn btn-warning">Edit</button></a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

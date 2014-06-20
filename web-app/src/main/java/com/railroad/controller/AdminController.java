@@ -1,12 +1,11 @@
 package com.railroad.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.railroad.model.entity.Route;
-import com.railroad.model.entity.Station;
-import com.railroad.model.entity.Train;
+import com.railroad.model.entity.*;
 import com.railroad.service.StationService;
 import com.railroad.service.TrainService;
-import org.json.JSONObject;
+import com.railroad.service.TypeofWagonService;
+import com.railroad.service.WagonService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,12 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.json.Json;
-import javax.json.JsonObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Elena on 4/28/2014.
@@ -77,6 +72,7 @@ public class AdminController extends AbstractController {
         return mapper.writeValueAsString(available);
     }
 
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView adminPage(){
         return new ModelAndView("redirect:/admin/stations");
@@ -127,6 +123,28 @@ public class AdminController extends AbstractController {
         return new ModelAndView("redirect:/admin/trains");
     }
 
+    private Train trainfromDB = new Train();
+
+    @RequestMapping("/editTrain/{idtrain}")
+    public ModelAndView editTicket(@PathVariable("idtrain")int idTrain) {
+
+        trainfromDB = trainService.get(idTrain);
+
+        return new ModelAndView("admin_edit_train", "commandEditTrain", trainfromDB);
+    }
+
+    @RequestMapping(value="/trains/editTrain", method = RequestMethod.POST)
+    public ModelAndView editTrain(@ModelAttribute Train train) {
+
+        trainfromDB.setNametrain(train.getNametrain());
+        trainfromDB.setNumbertrain(train.getNumbertrain());
+        trainfromDB.setMaxcountwagons(train.getMaxcountwagons());
+
+        trainService.update(trainfromDB);
+
+        return new ModelAndView("redirect:/admin/trains");
+    }
+
     //Routes
     @RequestMapping(value = "/routes", method = RequestMethod.GET)
     public ModelAndView adminRoutesPage(){
@@ -161,5 +179,99 @@ public class AdminController extends AbstractController {
         routeService.save(route);
 
         return new ModelAndView("redirect:/admin/routes");
+    }
+
+    //TypesofWagon
+    @RequestMapping(value = "/typeofwagons", method = RequestMethod.GET)
+    public ModelAndView adminTypeofwagonsPage(){
+
+        ModelAndView modelAndView = new ModelAndView("admin_typeofwagons_page", "typeofWagonList", typeofwagonService.getAll());
+        return modelAndView;
+    }
+
+    //Wagon
+    @RequestMapping(value = "/wagons", method = RequestMethod.GET)
+    public ModelAndView adminWagonsPage(){
+
+        ModelAndView modelAndView = new ModelAndView("admin_wagon_page", "wagonsList", wagonService.getAll());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/wagons/addWagon", method = RequestMethod.GET)
+    public ModelAndView addWagonPage(){
+
+        ModelAndView modelAndView = new ModelAndView("admin_add_wagon", "commandAddWagon", new Wagon());
+
+        modelAndView.addObject("trainsOptionsList", trainService.getAll());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/wagons/saveWagon", method = RequestMethod.POST)
+    public ModelAndView addingWagon(@ModelAttribute Wagon wagon) {
+
+        Typeofwagon typeofwagon = ((TypeofWagonService)typeofwagonService).getTypeofWagon(wagon.getTypeofwagonByIdtypeofwagon().getType(),
+                wagon.getTypeofwagonByIdtypeofwagon().getMyclass());
+        Train train = ((TrainService)trainService).getTrainByNumberTrain(wagon.getTrainByIdtrain().getNumbertrain());
+
+        wagon.setIdtypeofwagon(typeofwagon.getIdtypeofwagon());
+        wagon.setIdtrain(train.getIdtrain());
+
+        wagon.setTypeofwagonByIdtypeofwagon(typeofwagon);
+        wagon.setTrainByIdtrain(train);
+
+        wagonService.save(wagon);
+
+        return new ModelAndView("redirect:/admin/wagons");
+    }
+
+    //Places
+    @RequestMapping(value = "/places", method = RequestMethod.GET)
+    public ModelAndView adminPlacesPage(){
+
+        return new ModelAndView("admin_place_page", "placesList", placeService.getAll());
+    }
+
+    @RequestMapping(value = "/places/addPlace", method = RequestMethod.GET)
+    public ModelAndView addPlacePage(){
+
+        ModelAndView modelAndView = new ModelAndView("admin_add_place", "commandAddPlace", new Place());
+
+        modelAndView.addObject("wagonOptionList", wagonService.getAll());
+        modelAndView.addObject("trainsOptionsList", trainService.getAll());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/places/savePlace", method = RequestMethod.POST)
+    public ModelAndView addingPlace(@ModelAttribute Place place) {
+
+        Wagon wagon = ((WagonService)wagonService).getWagon(place.getIdwagon(), place.getWagon().getTrainByIdtrain().getNumbertrain());
+
+        place.setIdwagon(wagon.getIdwagon());
+        place.setIdtrain(wagon.getIdtrain());
+        place.setIdtypeofwagon(wagon.getIdtypeofwagon());
+        place.setWagon(wagon);
+
+        placeService.save(place)
+        ;
+        return new ModelAndView("redirect:/admin/places");
+    }
+
+    //Ticket
+    @RequestMapping(value = "/tickets", method = RequestMethod.GET)
+    public ModelAndView adminTicketsPage(){
+
+        return new ModelAndView("admin_tickets_page", "ticketList", ticketService.getAll());
+    }
+
+    @RequestMapping("/deleteTicket/{idticket}")
+     public ModelAndView deleteTicket(@PathVariable("idticket")int idTicket) {
+
+        Ticket ticket = ticketService.get(idTicket);
+
+        ticketService.delete(ticket);
+
+        return new ModelAndView("redirect:/admin/tickets");
     }
 }
